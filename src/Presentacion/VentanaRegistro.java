@@ -1,6 +1,7 @@
 package Presentacion;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Frame;
 
@@ -15,6 +16,9 @@ import javax.swing.JButton;
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import javax.swing.SwingConstants;
 
 public class VentanaRegistro extends JFrame {
 
@@ -24,9 +28,11 @@ public class VentanaRegistro extends JFrame {
 	private JTextField txtCorreo;
 	private JLabel lblIntroduzcaUnaContrasea;
 	private JLabel lblVuelvaAIntroducir;
-	private JPasswordField pasword1;
-	private JPasswordField pasword2;
+	private JPasswordField pwd1;
+	private JPasswordField pwd2;
 	private JButton btnRegistrar;
+	private JLabel lblAvisos;
+	private boolean puedeRegistrar=false;
 	
 	
 	/**
@@ -64,12 +70,6 @@ public class VentanaRegistro extends JFrame {
 			contentPane.add(lblIntroduzcaSuCorreo);
 		}
 		{
-			txtCorreo = new JTextField();
-			txtCorreo.setBounds(46, 42, 334, 22);
-			contentPane.add(txtCorreo);
-			txtCorreo.setColumns(10);
-		}
-		{
 			lblIntroduzcaUnaContrasea = new JLabel("Introduzca una contrase\u00F1a:");
 			lblIntroduzcaUnaContrasea.setBounds(12, 93, 192, 16);
 			contentPane.add(lblIntroduzcaUnaContrasea);
@@ -80,22 +80,72 @@ public class VentanaRegistro extends JFrame {
 			contentPane.add(lblVuelvaAIntroducir);
 		}
 		{
-			pasword1 = new JPasswordField();
-			pasword1.setToolTipText("Introducir la contrase\u00F1a para acceder a la agenda");
-			pasword1.setBounds(216, 90, 164, 22);
-			contentPane.add(pasword1);
+			txtCorreo = new JTextField();
+			txtCorreo.setBounds(46, 42, 334, 22);
+			contentPane.add(txtCorreo);
+			txtCorreo.setColumns(10);
 		}
 		{
-			pasword2 = new JPasswordField();
-			pasword2.setToolTipText("Introducir la contrase\u00F1a para acceder a la agenda");
-			pasword2.setBounds(216, 132, 164, 22);
-			contentPane.add(pasword2);
+			pwd1 = new JPasswordField();
+			pwd1.setToolTipText("Introducir la contrase\u00F1a para acceder a la agenda");
+			pwd1.setBounds(216, 90, 164, 22);
+			contentPane.add(pwd1);
+		}
+		{
+			pwd2 = new JPasswordField();
+			pwd2.addKeyListener(new Pwd2KeyListener());
+			pwd2.setToolTipText("Introducir la contrase\u00F1a para acceder a la agenda");
+			pwd2.setBounds(216, 132, 164, 22);
+			contentPane.add(pwd2);
 		}
 		{
 			btnRegistrar = new JButton("Registrar");
+			btnRegistrar.addActionListener(new BtnRegistrarActionListener());
 			btnRegistrar.setBounds(283, 172, 97, 30);
 			contentPane.add(btnRegistrar);
 		}
+		{
+			lblAvisos = new JLabel("");
+			lblAvisos.setHorizontalAlignment(SwingConstants.CENTER);
+			lblAvisos.setOpaque(true);
+			lblAvisos.setBounds(12, 173, 259, 29);
+			contentPane.add(lblAvisos);
+		}
 	}
 	
+	private class Pwd2KeyListener extends KeyAdapter {
+		
+		
+		@Override
+		//Comprobamos que las contraseñas introducidas son iguales
+		public void keyReleased(KeyEvent e) {
+			if(!pwd2.getText().equals(pwd1.getText())){
+				pwd2.setBackground(Color.RED);
+				puedeRegistrar=false;
+			}else{
+				pwd2.setBackground(Color.GREEN);
+				puedeRegistrar=true;
+			}
+		}
+	}
+	private class BtnRegistrarActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			
+			try{
+			//Comprobamos que los campos no esten vacios
+			if(txtCorreo.getText().isEmpty() || pwd2.getText().isEmpty() || puedeRegistrar==false){
+				lblAvisos.setText("Introduzca un correo y contraseñas validas");
+				lblAvisos.setBackground(Color.RED);
+			}else{
+				
+				//Registramos al usuario
+				
+				lblAvisos.setText("Correcto");
+				lblAvisos.setBackground(Color.GREEN);
+			}
+			}catch(Exception arg0){
+				System.out.println(arg0.getMessage());
+			}
+		}
+	}
 }

@@ -125,18 +125,18 @@ public class Login extends JFrame {
 					}
 				}
 			});
-			btnAceptar.setBounds(223, 192, 120, 40);
+			btnAceptar.setBounds(355, 189, 120, 40);
 			contentPane.add(btnAceptar);
 		}
 		{
-			JButton btnCancelar = new JButton("Cancelar");
+			JButton btnCancelar = new JButton("Cerrar");
 			btnCancelar.setToolTipText("Cerrar acceso");
 			btnCancelar.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					System.exit(0);
 				}
 			});
-			btnCancelar.setBounds(355, 192, 120, 40);
+			btnCancelar.setBounds(223, 189, 120, 40);
 			contentPane.add(btnCancelar);
 		}
 		{
