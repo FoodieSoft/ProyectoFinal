@@ -91,13 +91,13 @@ public class Login extends JFrame {
 					} else {
 
 						// Creamos un usuario con un nombre y una contraseña
-						Cliente cliente= new Cliente(tftUsuario.getText(), tftContrasena.getText());
+						//Cliente cliente= new Cliente(tftUsuario.getText(), tftContrasena.getText());
 						GestorCliente gestorCliente=new GestorCliente();
 						
 						try {
 
 							// Buscamos ese usuario en la base de datos
-							if (gestorCliente.autenticar(cliente) == true) {
+							if (gestorCliente.autenticar(tftUsuario.getText(),tftContrasena.getText()) == true) {
 								
 								
 
