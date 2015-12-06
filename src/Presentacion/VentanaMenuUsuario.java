@@ -46,6 +46,7 @@ public class VentanaMenuUsuario extends JFrame {
 	private JTextArea txtMerienda;
 	private JTextArea txtCena;
 	private JButton btnGenerarMenu;
+	protected Object frame;
 
 	/**
 	 * Launch the application.

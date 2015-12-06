@@ -97,12 +97,16 @@ public class Login extends JFrame {
 						try {
 
 							// Buscamos ese usuario en la base de datos
-							if (gestorCliente.autenticar(tftUsuario.getText(),tftContrasena.getText()) == true) {
+							switch(gestorCliente.autenticar(tftUsuario.getText(),tftContrasena.getText())) {
+								
+							case "usuario":
+								VentanaMenuUsuario usur=new VentanaMenuUsuario();
+								usur.setVisible(true);
+								usur.setLocationRelativeTo(null);
 								
 								
-
-								// Creamos otra ventana con el gestor de
-								// contactos
+							case "administrador":
+								
 //								InterfazGestor gestor = new InterfazGestor();
 //								gestor.setVisible(true);
 //								gestor.setLocationRelativeTo(null);
@@ -111,11 +115,11 @@ public class Login extends JFrame {
 								// Cerramos el login
 								frame.dispose();
 
-							} else {
+							default:
 
 								lblInfo.setText("Usuario o contraseña incorrecta");
 								lblInfo.setBackground(Color.RED);
-
+								//lblInfo.setText("Registrese para poder utilizar la aplicación");
 							}
 
 						} catch (Exception e) {
