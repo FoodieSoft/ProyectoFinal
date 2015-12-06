@@ -13,8 +13,8 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
-import Dominio.GestorUsuario;
-import Dominio.Usuario;
+import Dominio.Cliente;
+import Dominio.GestorCliente;
 import javax.swing.ImageIcon;
 import java.awt.Font;
 import java.awt.event.FocusAdapter;
@@ -91,13 +91,15 @@ public class Login extends JFrame {
 					} else {
 
 						// Creamos un usuario con un nombre y una contraseña
-						Usuario usuario = new Usuario(tftUsuario.getText(), tftContrasena.getText());
-						GestorUsuario gestorUsuario=new GestorUsuario();
+						Cliente cliente= new Cliente(tftUsuario.getText(), tftContrasena.getText());
+						GestorCliente gestorCliente=new GestorCliente();
 						
 						try {
 
 							// Buscamos ese usuario en la base de datos
-							if (gestorUsuario.autenticar(usuario) == true) {
+							if (gestorCliente.autenticar(cliente) == true) {
+								
+								
 
 								// Creamos otra ventana con el gestor de
 								// contactos
@@ -117,7 +119,7 @@ public class Login extends JFrame {
 							}
 
 						} catch (Exception e) {
-							lblInfo.setText("Usuario o contraseña incorrecta");
+							lblInfo.setText("Usuario o contraseña incorrectA");
 							lblInfo.setBackground(Color.RED);
 							System.out.println(e.getMessage());
 						}

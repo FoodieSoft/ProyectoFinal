@@ -15,6 +15,8 @@ import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -81,12 +83,14 @@ public class VentanaRegistro extends JFrame {
 		}
 		{
 			txtCorreo = new JTextField();
+			txtCorreo.addFocusListener(new MiFocusListener());
 			txtCorreo.setBounds(46, 42, 334, 22);
 			contentPane.add(txtCorreo);
 			txtCorreo.setColumns(10);
 		}
 		{
 			pwd1 = new JPasswordField();
+			pwd1.addFocusListener(new MiFocusListener());
 			pwd1.setToolTipText("Introducir la contrase\u00F1a para acceder a la agenda");
 			pwd1.setBounds(216, 90, 164, 22);
 			contentPane.add(pwd1);
@@ -94,6 +98,7 @@ public class VentanaRegistro extends JFrame {
 		{
 			pwd2 = new JPasswordField();
 			pwd2.addKeyListener(new Pwd2KeyListener());
+			pwd2.addFocusListener(new MiFocusListener());
 			pwd2.setToolTipText("Introducir la contrase\u00F1a para acceder a la agenda");
 			pwd2.setBounds(216, 132, 164, 22);
 			contentPane.add(pwd2);
@@ -110,6 +115,18 @@ public class VentanaRegistro extends JFrame {
 			lblAvisos.setOpaque(true);
 			lblAvisos.setBounds(12, 173, 259, 29);
 			contentPane.add(lblAvisos);
+		}
+	}
+	
+	private class MiFocusListener extends FocusAdapter {
+		@Override
+		public void focusGained(FocusEvent e) {
+			e.getComponent().setBackground(new Color(250, 250, 210));
+		}
+
+		@Override
+		public void focusLost(FocusEvent e) {
+			e.getComponent().setBackground(new Color(250, 250, 250));
 		}
 	}
 	
