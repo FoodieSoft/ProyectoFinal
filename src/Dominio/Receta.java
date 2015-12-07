@@ -15,11 +15,12 @@ public class Receta {
 	private String ingrediente4;
 	private String ingrediente5;
 	private String ingrediente6;
+	private String descripcion;
 	
 	
 	public Receta(String nombre, int tipo, int cantidad1, int cantidad2, int cantidad3, int cantidad4, int cantidad5,
 			int cantidad6, String ingrediente1, String ingrediente2, String ingrediente3, String ingrediente4,
-			String ingrediente5, String ingrediente6) {
+			String ingrediente5, String ingrediente6,String descripción) {
 		
 		this.nombre = nombre;
 		this.tipo = tipo;
@@ -35,7 +36,10 @@ public class Receta {
 		this.ingrediente4 = ingrediente4;
 		this.ingrediente5 = ingrediente5;
 		this.ingrediente6 = ingrediente6;
+		this.descripcion=descripcion;
 	}
+	
+	
 	public Receta() {
 		
 		this.nombre = null;
@@ -52,7 +56,15 @@ public class Receta {
 		this.ingrediente4 = null;
 		this.ingrediente5 = null;
 		this.ingrediente6 = null;
+		this.descripcion=null;
 	}
+	public String getDescripcion() {
+		return descripcion;
+	}
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+		}
+	
 	public String getNombre() {
 		return nombre;
 	}
@@ -139,11 +151,11 @@ public class Receta {
 	}
 	@Override
 	public String toString() {
-		return "Receta [nombre=" + nombre + ", tipo=" + tipo + ", cantidad1=" + cantidad1 + ", cantidad2=" + cantidad2
-				+ ", cantidad3=" + cantidad3 + ", cantidad4=" + cantidad4 + ", cantidad5=" + cantidad5 + ", cantidad6="
-				+ cantidad6 + ", ingrediente1=" + ingrediente1 + ", ingrediente2=" + ingrediente2 + ", ingrediente3="
-				+ ingrediente3 + ", ingrediente4=" + ingrediente4 + ", ingrediente5=" + ingrediente5 + ", ingrediente6="
-				+ ingrediente6 + "]";
+		return "Receta [nombre=" + nombre + ", cantidad1=" + cantidad1 + ", cantidad2=" + cantidad2 + ", cantidad3="
+				+ cantidad3 + ", cantidad4=" + cantidad4 + ", cantidad5=" + cantidad5 + ", cantidad6=" + cantidad6
+				+ ", ingrediente1=" + ingrediente1 + ", ingrediente2=" + ingrediente2 + ", ingrediente3=" + ingrediente3
+				+ ", ingrediente4=" + ingrediente4 + ", ingrediente5=" + ingrediente5 + ", ingrediente6=" + ingrediente6
+				+ ", descripcion=" + descripcion + "]";
 	}
 	
 }
