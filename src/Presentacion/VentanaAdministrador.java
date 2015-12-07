@@ -148,11 +148,13 @@ public class VentanaAdministrador extends JFrame {
 		public void actionPerformed(ActionEvent arg0) {
 
 			try {
+				
 				int eleccion = JOptionPane.showOptionDialog(frameAdministrador,
 						"¿Seguro que quieres eliminar la receta?", "Eliminar receta", JOptionPane.YES_NO_OPTION,
 						JOptionPane.QUESTION_MESSAGE, null, null, null);
 				if (eleccion == 0) {
 					System.out.println("yeah");
+					
 				}
 			} catch (Exception e) {
 
