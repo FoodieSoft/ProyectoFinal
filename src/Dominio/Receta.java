@@ -20,7 +20,7 @@ public class Receta {
 	
 	public Receta(String nombre, int tipo, int cantidad1, int cantidad2, int cantidad3, int cantidad4, int cantidad5,
 			int cantidad6, String ingrediente1, String ingrediente2, String ingrediente3, String ingrediente4,
-			String ingrediente5, String ingrediente6,String descripción) {
+			String ingrediente5, String ingrediente6,String descripcion) {
 		
 		this.nombre = nombre;
 		this.tipo = tipo;
