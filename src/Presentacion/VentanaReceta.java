@@ -2,12 +2,12 @@ package Presentacion;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.GridBagLayout;
+import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import java.awt.GridBagLayout;
-import java.awt.Toolkit;
 
 public class VentanaReceta extends JFrame {
 
@@ -46,10 +46,10 @@ public class VentanaReceta extends JFrame {
 			panel = new JPanel();
 			contentPane.add(panel, BorderLayout.CENTER);
 			GridBagLayout gbl_panel = new GridBagLayout();
-			gbl_panel.columnWidths = new int[]{0, 0, 0};
-			gbl_panel.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0};
-			gbl_panel.columnWeights = new double[]{1.0, 1.0, Double.MIN_VALUE};
-			gbl_panel.rowWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
+			gbl_panel.columnWidths = new int[] { 0, 0, 0 };
+			gbl_panel.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0 };
+			gbl_panel.columnWeights = new double[] { 1.0, 1.0, Double.MIN_VALUE };
+			gbl_panel.rowWeights = new double[] { 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE };
 			panel.setLayout(gbl_panel);
 		}
 	}

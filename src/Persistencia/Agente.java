@@ -6,8 +6,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Vector;
 
 import Dominio.Cliente;
+import Dominio.Receta;
 
 public class Agente {
 	// Instancia del agente
@@ -71,5 +73,25 @@ public class Agente {
 		desconectar();
 
 		return cliente;
+	}
+
+	public Vector<Receta> leerRecetas(String sentencia) throws SQLException, Exception {
+
+		conectar();
+
+		Statement select = mBD.createStatement();
+		ResultSet rs = select.executeQuery(sentencia);
+
+		Vector<Receta> recetas = new Vector<Receta>();
+		while (rs.next()) {
+			Receta receta = new Receta(rs.getString(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getInt(5),
+					rs.getInt(6), rs.getInt(7), rs.getInt(8), rs.getString(9), rs.getString(10), rs.getString(11),
+					rs.getString(12), rs.getString(13), rs.getString(14), rs.getString(15));
+			recetas.add(receta);
+		}
+		select.close();
+		desconectar();
+
+		return recetas;
 	}
 }

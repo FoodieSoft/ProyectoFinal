@@ -1,29 +1,26 @@
 package Presentacion;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
-import java.awt.Frame;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
-import Dominio.GestorCliente;
-
-import java.awt.GridBagLayout;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.JPasswordField;
-import javax.swing.JButton;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
-import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.WindowConstants;
+import javax.swing.border.EmptyBorder;
+
+import Dominio.GestorCliente;
 
 public class VentanaRegistro extends JFrame {
 
@@ -37,14 +34,14 @@ public class VentanaRegistro extends JFrame {
 	private JPasswordField pwd2;
 	private JButton btnRegistrar;
 	private JLabel lblAvisos;
-	private boolean puedeRegistrar=false;
-	
-	
+	private boolean puedeRegistrar = false;
+
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				try {
 					registro = new VentanaRegistro();
@@ -63,7 +60,7 @@ public class VentanaRegistro extends JFrame {
 		setTitle("Registrar usuario");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaRegistro.class.getResource("/Presentacion/logo.png")));
 		setResizable(false);
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 410, 258);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -120,7 +117,7 @@ public class VentanaRegistro extends JFrame {
 			contentPane.add(lblAvisos);
 		}
 	}
-	
+
 	private class MiFocusListener extends FocusAdapter {
 		@Override
 		public void focusGained(FocusEvent e) {
@@ -132,38 +129,40 @@ public class VentanaRegistro extends JFrame {
 			e.getComponent().setBackground(new Color(250, 250, 250));
 		}
 	}
-	
+
 	private class Pwd2KeyListener extends KeyAdapter {
-		
-		
+
 		@Override
-		//Comprobamos que las contraseñas introducidas son iguales
+		// Comprobamos que las contraseñas introducidas son iguales
 		public void keyReleased(KeyEvent e) {
-			if(!pwd2.getText().equals(pwd1.getText())){
+			if (!pwd2.getText().equals(pwd1.getText())) {
 				pwd2.setBackground(Color.RED);
-				puedeRegistrar=false;
-			}else{
+				puedeRegistrar = false;
+			} else {
 				pwd2.setBackground(Color.GREEN);
-				puedeRegistrar=true;
+				puedeRegistrar = true;
 			}
 		}
 	}
+
 	private class BtnRegistrarActionListener implements ActionListener {
+		@Override
 		public void actionPerformed(ActionEvent e) {
-			
-			try{
-				GestorCliente gestCli=new GestorCliente();
-			//Comprobamos que los campos no esten vacios
-			if(txtCorreo.getText().isEmpty() || txtCorreo.getText().indexOf("@")==-1 || pwd2.getText().isEmpty() || puedeRegistrar==false){
-				lblAvisos.setText("Introduzca un correo y contraseñas validas");
-				lblAvisos.setBackground(Color.RED);
-			}else{
-				gestCli.registro(txtCorreo.getText(), pwd2.getText());
-				
-				lblAvisos.setText("Correcto");
-				lblAvisos.setBackground(Color.GREEN);
-			}
-			}catch(Exception arg0){
+
+			try {
+				GestorCliente gestCli = new GestorCliente();
+				// Comprobamos que los campos no esten vacios
+				if (txtCorreo.getText().isEmpty() || txtCorreo.getText().indexOf("@") == -1 || pwd2.getText().isEmpty()
+						|| puedeRegistrar == false) {
+					lblAvisos.setText("Introduzca un correo y contraseñas validas");
+					lblAvisos.setBackground(Color.RED);
+				} else {
+					gestCli.registro(txtCorreo.getText(), pwd2.getText());
+
+					lblAvisos.setText("Correcto");
+					lblAvisos.setBackground(Color.GREEN);
+				}
+			} catch (Exception arg0) {
 				System.out.println(arg0.getMessage());
 			}
 		}

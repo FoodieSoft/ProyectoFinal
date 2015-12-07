@@ -136,7 +136,7 @@ public class Login extends JFrame {
 								reg.setVisible(true);
 								reg.setLocationRelativeTo(null);
 
-							} 
+							}
 						}
 
 					}

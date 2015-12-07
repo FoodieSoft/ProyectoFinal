@@ -5,9 +5,15 @@ import java.awt.EventQueue;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.sql.SQLException;
+import java.util.Vector;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JList;
@@ -15,7 +21,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
-import java.awt.Toolkit;
+
+import Dominio.GestorReceta;
+import Dominio.Receta;
 
 public class VentanaAdministrador extends JFrame {
 
@@ -26,7 +34,7 @@ public class VentanaAdministrador extends JFrame {
 	private JButton btnModificarReceta;
 	private JButton btnEliminarReceta;
 	private JScrollPane scrollPane;
-	private JList list;
+	private static JList listaRecetas;
 
 	/**
 	 * Launch the application.
@@ -49,11 +57,14 @@ public class VentanaAdministrador extends JFrame {
 	 * Create the frame.
 	 */
 	public VentanaAdministrador() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaAdministrador.class.getResource("/Presentacion/logo.png")));
+		addWindowListener(new ThisWindowListener());
+		addWindowListener(new ThisWindowListener());
+		setIconImage(
+				Toolkit.getDefaultToolkit().getImage(VentanaAdministrador.class.getResource("/Presentacion/logo.png")));
 		setTitle("Administrar recetas");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 500, 700);
+		setBounds(100, 100, 400, 700);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -62,7 +73,7 @@ public class VentanaAdministrador extends JFrame {
 			panel = new JPanel();
 			contentPane.add(panel, BorderLayout.CENTER);
 			GridBagLayout gbl_panel = new GridBagLayout();
-			gbl_panel.columnWidths = new int[] { 268, 0, 0 };
+			gbl_panel.columnWidths = new int[] { 202, 0, 0 };
 			gbl_panel.rowHeights = new int[] { 0, 100, 100, 100, 0, 0 };
 			gbl_panel.columnWeights = new double[] { 1.0, 1.0, Double.MIN_VALUE };
 			gbl_panel.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE };
@@ -77,8 +88,11 @@ public class VentanaAdministrador extends JFrame {
 				gbc_scrollPane.gridy = 1;
 				panel.add(scrollPane, gbc_scrollPane);
 				{
-					list = new JList();
-					scrollPane.setViewportView(list);
+					listaRecetas = new JList();
+					DefaultListModel modeloLista = new DefaultListModel();
+					listaRecetas.setModel(modeloLista);
+					scrollPane.setViewportView(listaRecetas);
+
 				}
 			}
 			{
@@ -132,5 +146,34 @@ public class VentanaAdministrador extends JFrame {
 			int eleccion = JOptionPane.showOptionDialog(frameAdministrador, "¿Seguro que quieres eliminar la receta?",
 					"Eliminar receta", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
 		}
+	}
+
+	private class ThisWindowListener extends WindowAdapter {
+		@Override
+		public void windowActivated(WindowEvent e) {
+			try {
+				actualizarRecetasLista();
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+	}
+
+	private static void actualizarRecetasLista() throws SQLException, Exception {
+
+		DefaultListModel modeloLista = (DefaultListModel) listaRecetas.getModel();
+		modeloLista.clear();
+		GestorReceta gestorReceta = new GestorReceta();
+
+		Vector<Receta> recetas = gestorReceta.leerRecetas();
+
+		for (int i = 0; i < recetas.size(); i++) {
+
+			modeloLista.addElement(recetas.elementAt(i).getNombre());
+		}
+
+		listaRecetas.setModel(modeloLista);
+
 	}
 }
