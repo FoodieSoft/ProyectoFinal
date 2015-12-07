@@ -98,6 +98,7 @@ public class Login extends JFrame {
 
 							// Buscamos ese usuario en la base de datos
 							String tipo=gestorCliente.autenticar(tftUsuario.getText(),tftContrasena.getText());
+							
 							TipoUsu tipou=TipoUsu.valueOf(tipo);
 							
 							switch(tipou) {
@@ -119,7 +120,14 @@ public class Login extends JFrame {
 								// Cerramos el login
 								frame.dispose();
 								break;
-							
+							case nada:
+								
+								VentanaRegistro reg=new VentanaRegistro();
+								reg.setVisible(true);
+								reg.setLocationRelativeTo(null);
+								frame.dispose();
+								
+								
 							}
 
 						} catch (Exception e) {
@@ -224,6 +232,6 @@ public class Login extends JFrame {
 		}
 	}
 	private enum TipoUsu{
-		usuario,admin;
+		usuario,admin,nada;
 	}
 }
