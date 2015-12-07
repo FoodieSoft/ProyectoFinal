@@ -42,6 +42,7 @@ public class VentanaMenuUsuario extends JFrame {
 	private JTextArea txtCena;
 	private JButton btnGenerarMenu;
 	protected Object frame;
+	private JButton btnVerMisRecetas;
 
 	/**
 	 * Launch the application.
@@ -79,9 +80,9 @@ public class VentanaMenuUsuario extends JFrame {
 			contentPane.add(panel, BorderLayout.CENTER);
 			GridBagLayout gbl_panel = new GridBagLayout();
 			gbl_panel.columnWidths = new int[] { 248, 0, 0 };
-			gbl_panel.rowHeights = new int[] { 100, 100, 100, 100, 100, 31, 0, 0 };
+			gbl_panel.rowHeights = new int[] { 100, 100, 100, 100, 100, 31, 0, 0, 0 };
 			gbl_panel.columnWeights = new double[] { 0.0, 1.0, Double.MIN_VALUE };
-			gbl_panel.rowWeights = new double[] { 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE };
+			gbl_panel.rowWeights = new double[] { 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE };
 			panel.setLayout(gbl_panel);
 			{
 				btnGenerarDesayuno = new JButton("Generar desayuno");
@@ -219,10 +220,19 @@ public class VentanaMenuUsuario extends JFrame {
 				panel.add(btnGenerarMenu, gbc_btnGenerarMenu);
 			}
 			GridBagConstraints gbc_btnGuardarRecetas = new GridBagConstraints();
+			gbc_btnGuardarRecetas.insets = new Insets(0, 0, 5, 0);
 			gbc_btnGuardarRecetas.fill = GridBagConstraints.BOTH;
 			gbc_btnGuardarRecetas.gridx = 1;
 			gbc_btnGuardarRecetas.gridy = 6;
 			panel.add(btnGuardarRecetas, gbc_btnGuardarRecetas);
+			{
+				btnVerMisRecetas = new JButton("Ver mis recetas");
+				GridBagConstraints gbc_btnVerMisRecetas = new GridBagConstraints();
+				gbc_btnVerMisRecetas.fill = GridBagConstraints.BOTH;
+				gbc_btnVerMisRecetas.gridx = 1;
+				gbc_btnVerMisRecetas.gridy = 7;
+				panel.add(btnVerMisRecetas, gbc_btnVerMisRecetas);
+			}
 		}
 	}
 

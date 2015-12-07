@@ -154,7 +154,7 @@ public class VentanaRegistro extends JFrame {
 				// Comprobamos que los campos no esten vacios
 				if (txtCorreo.getText().isEmpty() || txtCorreo.getText().indexOf("@") == -1 || pwd2.getText().isEmpty()
 						|| puedeRegistrar == false) {
-					lblAvisos.setText("Introduzca un correo y contraseñas validas");
+					lblAvisos.setText("Introduzca un correo (@) y contraseñas validas");
 					lblAvisos.setBackground(Color.RED);
 				} else {
 					gestCli.registro(txtCorreo.getText(), pwd2.getText());

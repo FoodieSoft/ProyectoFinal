@@ -35,6 +35,7 @@ public class VentanaAdministrador extends JFrame {
 	private JButton btnEliminarReceta;
 	private JScrollPane scrollPane;
 	private static JList listaRecetas;
+	private VentanaReceta ventanaReceta;
 
 	/**
 	 * Launch the application.
@@ -131,6 +132,8 @@ public class VentanaAdministrador extends JFrame {
 	private class BtnAadirRecetaActionListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
+			ventanaReceta=new VentanaReceta();
+			ventanaReceta.setVisible(true);
 		}
 	}
 
@@ -143,8 +146,17 @@ public class VentanaAdministrador extends JFrame {
 	private class BtnEliminarRecetaActionListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			int eleccion = JOptionPane.showOptionDialog(frameAdministrador, "¿Seguro que quieres eliminar la receta?",
-					"Eliminar receta", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
+
+			try {
+				int eleccion = JOptionPane.showOptionDialog(frameAdministrador,
+						"¿Seguro que quieres eliminar la receta?", "Eliminar receta", JOptionPane.YES_NO_OPTION,
+						JOptionPane.QUESTION_MESSAGE, null, null, null);
+				if (eleccion == 0) {
+					System.out.println("yeah");
+				}
+			} catch (Exception e) {
+
+			}
 		}
 	}
 

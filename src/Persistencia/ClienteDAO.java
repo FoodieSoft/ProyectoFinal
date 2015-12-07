@@ -12,7 +12,7 @@ public class ClienteDAO {
 	public String autenticar(Cliente cliente) throws SQLException, Exception {
 		String tipo = null;
 
-		String sentencia = "SELECT * FROM todayapp.usuario WHERE correo='" + cliente.getcorreo() + "' AND password= '"
+		String sentencia = "SELECT * FROM foodiesoft.usuario WHERE correo='" + cliente.getcorreo() + "' AND password= '"
 				+ cliente.getPassword() + "';";
 
 		cliente = Agente.getAgente().readClient(sentencia);
@@ -25,7 +25,7 @@ public class ClienteDAO {
 	public boolean registro(Cliente cliente) throws SQLException, Exception {
 		boolean insertado = false;
 		int i;
-		String sentencia = "INSERT INTO todayapp.usuario (correo,password,tipoUsua) VALUES ('" + cliente.getcorreo()
+		String sentencia = "INSERT INTO foodiesoft.usuario (correo,password,tipoUsua) VALUES ('" + cliente.getcorreo()
 				+ "','" + cliente.getPassword() + "','usuario')";
 		i = Agente.getAgente().update(sentencia);
 		if (i != 0) {

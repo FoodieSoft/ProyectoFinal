@@ -11,5 +11,12 @@ public class GestorReceta {
 		recetas = gestorLeerRecetas.leerRecetas();
 		return recetas;
 	}
+	
+	public Vector<Receta> eliminarReceta() throws SQLException, Exception {
+		Vector<Receta> recetas = null;
+		GestorLeerRecetas gestorLeerRecetas = new GestorLeerRecetas();
+		recetas = gestorLeerRecetas.leerRecetas();
+		return recetas;
+	}
 
 }
