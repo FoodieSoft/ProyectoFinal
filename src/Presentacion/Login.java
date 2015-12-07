@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -120,22 +121,28 @@ public class Login extends JFrame {
 								// Cerramos el login
 								frame.dispose();
 								break;
-							case nada:
-								
-								VentanaRegistro reg=new VentanaRegistro();
-								reg.setVisible(true);
-								reg.setLocationRelativeTo(null);
-								frame.dispose();
+							
 								
 								
 							}
 
 						} catch (Exception e) {
-							lblInfo.setText("Usuario o contraseña incorrectA");
-							lblInfo.setBackground(Color.RED);
-							System.out.println(e.getMessage());
-							System.out.println(e.toString());
-							System.out.println(e.getLocalizedMessage());
+							
+							if(JOptionPane.showOptionDialog(null, "Constraseña o usuario incorrecta.¿Está usted seguro de que es usuario?¿Desea registrarse?", "Mensaje", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new Object[]{" SI "," CONTINUAR "},"NO")==0)
+							 {
+							         JOptionPane.showMessageDialog(null, "Será enviado al menu de Registro");
+							         VentanaRegistro reg=new VentanaRegistro();
+							         reg.setVisible(true);
+							         reg.setLocationRelativeTo(null);
+							         
+							         frame.dispose();
+							 }
+							 else
+							 {
+							        JOptionPane.showMessageDialog(null, "La respuesta fue - CONTINUAR");
+							        lblInfo.setText("Usuario o contraseña incorrectA");
+							        lblInfo.setBackground(Color.RED);
+							 }
 						}
 
 					}
@@ -232,6 +239,6 @@ public class Login extends JFrame {
 		}
 	}
 	private enum TipoUsu{
-		usuario,admin,nada;
+		usuario,admin;
 	}
 }
