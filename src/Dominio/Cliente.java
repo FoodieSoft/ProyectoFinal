@@ -5,19 +5,18 @@ public class Cliente {
 	private String correo;
 	private String password;
 	private String tipo;
-	
 
 	public Cliente(String correo, String password) {
 		this.correo = correo;
 		this.password = password;
-		
+
 	}
 
 	public Cliente() {
 		this.correo = null;
 		this.password = null;
-		this.tipo=null;
-		
+		this.tipo = null;
+
 	}
 
 	public String getTipo() {

@@ -2,21 +2,20 @@ package Presentacion;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
+import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
-
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
-import javax.swing.JButton;
-import javax.swing.JScrollBar;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import javax.swing.border.EmptyBorder;
+import java.awt.Toolkit;
 
 public class VentanaAdministrador extends JFrame {
 
@@ -34,6 +33,7 @@ public class VentanaAdministrador extends JFrame {
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				try {
 					frameAdministrador = new VentanaAdministrador();
@@ -49,6 +49,8 @@ public class VentanaAdministrador extends JFrame {
 	 * Create the frame.
 	 */
 	public VentanaAdministrador() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaAdministrador.class.getResource("/Presentacion/logo.png")));
+		setTitle("Administrar recetas");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 500, 700);
@@ -60,10 +62,10 @@ public class VentanaAdministrador extends JFrame {
 			panel = new JPanel();
 			contentPane.add(panel, BorderLayout.CENTER);
 			GridBagLayout gbl_panel = new GridBagLayout();
-			gbl_panel.columnWidths = new int[]{268, 0, 0};
-			gbl_panel.rowHeights = new int[]{0, 100, 100, 100, 0, 0};
-			gbl_panel.columnWeights = new double[]{1.0, 1.0, Double.MIN_VALUE};
-			gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+			gbl_panel.columnWidths = new int[] { 268, 0, 0 };
+			gbl_panel.rowHeights = new int[] { 0, 100, 100, 100, 0, 0 };
+			gbl_panel.columnWeights = new double[] { 1.0, 1.0, Double.MIN_VALUE };
+			gbl_panel.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE };
 			panel.setLayout(gbl_panel);
 			{
 				scrollPane = new JScrollPane();
@@ -113,18 +115,22 @@ public class VentanaAdministrador extends JFrame {
 	}
 
 	private class BtnAadirRecetaActionListener implements ActionListener {
+		@Override
 		public void actionPerformed(ActionEvent arg0) {
 		}
 	}
+
 	private class BtnModificarRecetaActionListener implements ActionListener {
+		@Override
 		public void actionPerformed(ActionEvent arg0) {
 		}
 	}
+
 	private class BtnEliminarRecetaActionListener implements ActionListener {
+		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			int eleccion = JOptionPane.showOptionDialog(frameAdministrador,
-					"¿Seguro que quieres eliminar la receta?", "Eliminar receta", JOptionPane.YES_NO_OPTION,
-					JOptionPane.QUESTION_MESSAGE, null, null, null);
+			int eleccion = JOptionPane.showOptionDialog(frameAdministrador, "¿Seguro que quieres eliminar la receta?",
+					"Eliminar receta", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
 		}
 	}
 }

@@ -2,9 +2,14 @@ package Presentacion;
 
 import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -14,17 +19,12 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
-import Dominio.Cliente;
-import Dominio.GestorCliente;
-import javax.swing.ImageIcon;
-import java.awt.Font;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
 
+import Dominio.GestorCliente;
 
 public class Login extends JFrame {
-	
-	private VentanaRegistro registro= new VentanaRegistro();
+
+	private VentanaRegistro registro = new VentanaRegistro();
 	private static Login frame;
 	private JPanel contentPane;
 	private JTextField tftUsuario;
@@ -35,12 +35,12 @@ public class Login extends JFrame {
 	private JLabel lblInfo;
 	private JLabel lblLogo;
 
-	
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				try {
 					frame = new Login();
@@ -60,7 +60,7 @@ public class Login extends JFrame {
 	public Login() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Login.class.getResource("/Presentacion/logo.png")));
-		setTitle("TodayEAT - Acceso");
+		setTitle("Acceso");
 		setResizable(false);
 		setBounds(100, 100, 500, 292);
 		contentPane = new JPanel();
@@ -81,6 +81,7 @@ public class Login extends JFrame {
 			btnAceptar.setToolTipText("Acceder a la aplicaci\u00F3n");
 			btnAceptar.addActionListener(new ActionListener() {
 
+				@Override
 				public void actionPerformed(ActionEvent arg0) {
 
 					// Comprobamos que los campos id y contraseña no esten
@@ -91,75 +92,69 @@ public class Login extends JFrame {
 
 					} else {
 
-						// Creamos un usuario con un nombre y una contraseña
-						//Cliente cliente= new Cliente(tftUsuario.getText(), tftContrasena.getText());
-						GestorCliente gestorCliente=new GestorCliente();
-						
+						GestorCliente gestorCliente = new GestorCliente();
+
 						try {
 
-							// Buscamos ese usuario en la base de datos
-							String tipo=gestorCliente.autenticar(tftUsuario.getText(),tftContrasena.getText());
-							
-							TipoUsu tipou=TipoUsu.valueOf(tipo);
-							
-							switch(tipou) {
-								
+							// Buscamos ese cliente en la base de datos
+							String tipo = gestorCliente.autenticar(tftUsuario.getText(), tftContrasena.getText());
+
+							TipoUsu tipou = TipoUsu.valueOf(tipo);
+
+							switch (tipou) {
+
 							case usuario:
-								VentanaMenuUsuario usur=new VentanaMenuUsuario();
+								VentanaMenuUsuario usur = new VentanaMenuUsuario();
 								usur.setVisible(true);
 								usur.setLocationRelativeTo(null);
-								
-								//cerramos el login
+
+								// cerramos el login
 								frame.dispose();
 								break;
+
 							case admin:
-								
-								VentanaAdministrador admin=new VentanaAdministrador();
+
+								VentanaAdministrador admin = new VentanaAdministrador();
 								admin.setVisible(true);
 								admin.setLocationRelativeTo(null);
 
 								// Cerramos el login
 								frame.dispose();
 								break;
-							
-								
-								
+
 							}
 
 						} catch (Exception e) {
-							
-							if(JOptionPane.showOptionDialog(null, "Constraseña o usuario incorrecta.¿Está usted seguro de que es usuario?¿Desea registrarse?", "Mensaje", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new Object[]{" SI "," CONTINUAR "},"NO")==0)
-							 {
-							         JOptionPane.showMessageDialog(null, "Será enviado al menu de Registro");
-							         VentanaRegistro reg=new VentanaRegistro();
-							         reg.setVisible(true);
-							         reg.setLocationRelativeTo(null);
-							         
-							         frame.dispose();
-							 }
-							 else
-							 {
-							        JOptionPane.showMessageDialog(null, "La respuesta fue - CONTINUAR");
-							        lblInfo.setText("Usuario o contraseña incorrectA");
-							        lblInfo.setBackground(Color.RED);
-							 }
+							lblInfo.setText("Usuario o contraseña incorrecta");
+							lblInfo.setBackground(Color.RED);
+
+							if (JOptionPane.showOptionDialog(null,
+									"Usuario o contraseña incorrecta. ¿Desea registrarse?", "Mensaje",
+									JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null,
+									new Object[] { " SI ", " NO " }, "NO") == 0) {
+								VentanaRegistro reg = new VentanaRegistro();
+								reg.setVisible(true);
+								reg.setLocationRelativeTo(null);
+
+							} 
 						}
 
 					}
 				}
 			});
-			btnAceptar.setBounds(355, 189, 120, 40);
+			btnAceptar.setBounds(227, 192, 120, 40);
 			contentPane.add(btnAceptar);
 		}
 		{
 			JButton btnCancelar = new JButton("Cerrar");
 			btnCancelar.setToolTipText("Cerrar acceso");
 			btnCancelar.addActionListener(new ActionListener() {
+				@Override
 				public void actionPerformed(ActionEvent arg0) {
 					System.exit(0);
 				}
 			});
-			btnCancelar.setBounds(223, 189, 120, 40);
+			btnCancelar.setBounds(355, 192, 120, 40);
 			contentPane.add(btnCancelar);
 		}
 		{
@@ -208,12 +203,14 @@ public class Login extends JFrame {
 	}
 
 	private class TftUsuarioActionListener implements ActionListener {
+		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			tftContrasena.requestFocus();
 		}
 	}
 
 	private class TftContrasenaActionListener implements ActionListener {
+		@Override
 		public void actionPerformed(ActionEvent e) {
 			btnAceptar.requestFocus();
 		}
@@ -230,15 +227,18 @@ public class Login extends JFrame {
 			e.getComponent().setBackground(new Color(250, 250, 250));
 		}
 	}
+
 	private class ButtonActionListener implements ActionListener {
+		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			
+
 			registro.setVisible(true);
 			registro.setLocationRelativeTo(null);
-			
+
 		}
 	}
-	private enum TipoUsu{
-		usuario,admin;
+
+	private enum TipoUsu {
+		usuario, admin;
 	}
 }

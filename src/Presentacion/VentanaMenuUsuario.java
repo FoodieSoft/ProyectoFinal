@@ -1,28 +1,23 @@
 package Presentacion;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import java.awt.Toolkit;
-import javax.swing.JSplitPane;
-import javax.swing.JLabel;
-import java.awt.GridBagLayout;
-import javax.swing.JTextArea;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
-import javax.swing.JMenuBar;
-import javax.swing.JMenu;
-import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
-import javax.swing.JButton;
-import javax.swing.JScrollPane;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.Dimension;
 import java.awt.ComponentOrientation;
+import java.awt.Dimension;
+import java.awt.EventQueue;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.border.EmptyBorder;
 
 public class VentanaMenuUsuario extends JFrame {
 
@@ -53,6 +48,7 @@ public class VentanaMenuUsuario extends JFrame {
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				try {
 					frameMenuUsuario = new VentanaMenuUsuario();
@@ -68,6 +64,7 @@ public class VentanaMenuUsuario extends JFrame {
 	 * Create the frame.
 	 */
 	public VentanaMenuUsuario() {
+		setTitle("Men\u00FA");
 		setMinimumSize(new Dimension(500, 500));
 		setIconImage(
 				Toolkit.getDefaultToolkit().getImage(VentanaMenuUsuario.class.getResource("/Presentacion/logo.png")));
@@ -230,6 +227,7 @@ public class VentanaMenuUsuario extends JFrame {
 	}
 
 	private class BtnGenerarDesayunoActionListener implements ActionListener {
+		@Override
 		public void actionPerformed(ActionEvent e) {
 			Object[] numComensales = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 			int comensales = 0;
@@ -240,18 +238,19 @@ public class VentanaMenuUsuario extends JFrame {
 			} catch (Exception arg) {
 			}
 
-			try{
-			
-				if(comensales!=0){
-					
+			try {
+
+				if (comensales != 0) {
+
 				}
-			}catch(Exception arg0){
-				
+			} catch (Exception arg0) {
+
 			}
 		}
 	}
 
 	private class BtnGenerarAlmuerzoActionListener implements ActionListener {
+		@Override
 		public void actionPerformed(ActionEvent e) {
 			Object[] numComensales = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 			int comensales = 0;
@@ -261,20 +260,21 @@ public class VentanaMenuUsuario extends JFrame {
 						JOptionPane.INFORMATION_MESSAGE, null, numComensales, null);
 			} catch (Exception arg) {
 			}
-			
-			try{
-				
-				if(comensales!=0){
-					
+
+			try {
+
+				if (comensales != 0) {
+
 				}
-			}catch(Exception arg0){
-				
+			} catch (Exception arg0) {
+
 			}
 
 		}
 	}
 
 	private class BtnGenerarComidaActionListener implements ActionListener {
+		@Override
 		public void actionPerformed(ActionEvent e) {
 			Object[] numComensales = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 			int comensales = 0;
@@ -284,20 +284,21 @@ public class VentanaMenuUsuario extends JFrame {
 						JOptionPane.INFORMATION_MESSAGE, null, numComensales, null);
 			} catch (Exception arg) {
 			}
-			
-			try{
-				
-				if(comensales!=0){
-					
+
+			try {
+
+				if (comensales != 0) {
+
 				}
-			}catch(Exception arg0){
-				
+			} catch (Exception arg0) {
+
 			}
 
 		}
 	}
 
 	private class BtnGenerarMeriendaActionListener implements ActionListener {
+		@Override
 		public void actionPerformed(ActionEvent e) {
 			Object[] numComensales = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 			int comensales = 0;
@@ -307,20 +308,21 @@ public class VentanaMenuUsuario extends JFrame {
 						JOptionPane.INFORMATION_MESSAGE, null, numComensales, null);
 			} catch (Exception arg) {
 			}
-			
-			try{
-				
-				if(comensales!=0){
-					
+
+			try {
+
+				if (comensales != 0) {
+
 				}
-			}catch(Exception arg0){
-				
+			} catch (Exception arg0) {
+
 			}
 
 		}
 	}
 
 	private class BtnGenerarCenaActionListener implements ActionListener {
+		@Override
 		public void actionPerformed(ActionEvent e) {
 			Object[] numComensales = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 			int comensales = 0;
@@ -330,20 +332,21 @@ public class VentanaMenuUsuario extends JFrame {
 						JOptionPane.INFORMATION_MESSAGE, null, numComensales, null);
 			} catch (Exception arg) {
 			}
-			
-			try{
-				
-				if(comensales!=0){
-					
+
+			try {
+
+				if (comensales != 0) {
+
 				}
-			}catch(Exception arg0){
-				
+			} catch (Exception arg0) {
+
 			}
 
 		}
 	}
 
 	private class BtnGenerarMenuActionListener implements ActionListener {
+		@Override
 		public void actionPerformed(ActionEvent e) {
 			Object[] numComensales = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 			int comensales = 0;
@@ -353,19 +356,20 @@ public class VentanaMenuUsuario extends JFrame {
 						JOptionPane.INFORMATION_MESSAGE, null, numComensales, null);
 			} catch (Exception arg) {
 			}
-			try{
-				
-				if(comensales!=0){
-					
+			try {
+
+				if (comensales != 0) {
+
 				}
-			}catch(Exception arg0){
-				
+			} catch (Exception arg0) {
+
 			}
 
 		}
 	}
 
 	private class BtnGuardarRecetasActionListener implements ActionListener {
+		@Override
 		public void actionPerformed(ActionEvent e) {
 
 		}

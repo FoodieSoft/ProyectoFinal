@@ -8,6 +8,9 @@ import java.awt.Frame;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Dominio.GestorCliente;
+
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -149,13 +152,13 @@ public class VentanaRegistro extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 			
 			try{
+				GestorCliente gestCli=new GestorCliente();
 			//Comprobamos que los campos no esten vacios
-			if(txtCorreo.getText().isEmpty() || pwd2.getText().isEmpty() || puedeRegistrar==false){
+			if(txtCorreo.getText().isEmpty() || txtCorreo.getText().indexOf("@")==-1 || pwd2.getText().isEmpty() || puedeRegistrar==false){
 				lblAvisos.setText("Introduzca un correo y contraseñas validas");
 				lblAvisos.setBackground(Color.RED);
 			}else{
-				
-				//Registramos al usuario
+				gestCli.registro(txtCorreo.getText(), pwd2.getText());
 				
 				lblAvisos.setText("Correcto");
 				lblAvisos.setBackground(Color.GREEN);
