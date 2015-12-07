@@ -97,35 +97,37 @@ public class Login extends JFrame {
 						try {
 
 							// Buscamos ese usuario en la base de datos
-							switch(gestorCliente.autenticar(tftUsuario.getText(),tftContrasena.getText())) {
+							String tipo=gestorCliente.autenticar(tftUsuario.getText(),tftContrasena.getText());
+							TipoUsu tipou=TipoUsu.valueOf(tipo);
+							
+							switch(tipou) {
 								
-							case "usuario":
+							case usuario:
 								VentanaMenuUsuario usur=new VentanaMenuUsuario();
 								usur.setVisible(true);
 								usur.setLocationRelativeTo(null);
 								
+								//cerramos el login
+								frame.dispose();
+								break;
+							case admin:
 								
-							case "administrador":
-								
-//								InterfazGestor gestor = new InterfazGestor();
-//								gestor.setVisible(true);
-//								gestor.setLocationRelativeTo(null);
-//								gestor.usuario=usuario;
+								VentanaAdministrador admin=new VentanaAdministrador();
+								admin.setVisible(true);
+								admin.setLocationRelativeTo(null);
 
 								// Cerramos el login
 								frame.dispose();
-
-							default:
-
-								lblInfo.setText("Usuario o contraseña incorrecta");
-								lblInfo.setBackground(Color.RED);
-								//lblInfo.setText("Registrese para poder utilizar la aplicación");
+								break;
+							
 							}
 
 						} catch (Exception e) {
 							lblInfo.setText("Usuario o contraseña incorrectA");
 							lblInfo.setBackground(Color.RED);
 							System.out.println(e.getMessage());
+							System.out.println(e.toString());
+							System.out.println(e.getLocalizedMessage());
 						}
 
 					}
@@ -220,5 +222,8 @@ public class Login extends JFrame {
 			registro.setLocationRelativeTo(null);
 			
 		}
+	}
+	private enum TipoUsu{
+		usuario,admin;
 	}
 }
