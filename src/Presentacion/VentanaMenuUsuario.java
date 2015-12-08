@@ -6,26 +6,29 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Dominio.GestorReceta;
+
 import java.awt.Toolkit;
-import javax.swing.JSplitPane;
-import javax.swing.JLabel;
 import java.awt.GridBagLayout;
 import javax.swing.JTextArea;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
-import javax.swing.JMenuBar;
-import javax.swing.JMenu;
-import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import java.awt.Dimension;
 import java.awt.ComponentOrientation;
 
 public class VentanaMenuUsuario extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private static VentanaMenuUsuario frameMenuUsuario;
 	private JPanel contentPane;
 	private JPanel panel;
@@ -47,10 +50,14 @@ public class VentanaMenuUsuario extends JFrame {
 	private JTextArea txtCena;
 	private JButton btnGenerarMenu;
 	protected Object frame;
-
+	private GestorReceta gest=new GestorReceta();
+	private int VARIABLECONTROLADOR=0;
+	private JButton btnVerMisRecetas;
+	
 	/**
 	 * Launch the application.
 	 */
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -82,9 +89,9 @@ public class VentanaMenuUsuario extends JFrame {
 			contentPane.add(panel, BorderLayout.CENTER);
 			GridBagLayout gbl_panel = new GridBagLayout();
 			gbl_panel.columnWidths = new int[] { 248, 0, 0 };
-			gbl_panel.rowHeights = new int[] { 100, 100, 100, 100, 100, 31, 0, 0 };
+			gbl_panel.rowHeights = new int[] { 100, 100, 100, 100, 100, 31, 0, 0, 0 };
 			gbl_panel.columnWeights = new double[] { 0.0, 1.0, Double.MIN_VALUE };
-			gbl_panel.rowWeights = new double[] { 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE };
+			gbl_panel.rowWeights = new double[] { 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE };
 			panel.setLayout(gbl_panel);
 			{
 				btnGenerarDesayuno = new JButton("Generar desayuno");
@@ -221,10 +228,19 @@ public class VentanaMenuUsuario extends JFrame {
 				gbc_btnGenerarMenu.gridy = 5;
 				panel.add(btnGenerarMenu, gbc_btnGenerarMenu);
 			}
+			{
+				btnVerMisRecetas = new JButton("Ver mis recetas");
+				GridBagConstraints gbc_btnVerMisRecetas = new GridBagConstraints();
+				gbc_btnVerMisRecetas.fill = GridBagConstraints.BOTH;
+				gbc_btnVerMisRecetas.insets = new Insets(0, 0, 5, 0);
+				gbc_btnVerMisRecetas.gridx = 1;
+				gbc_btnVerMisRecetas.gridy = 6;
+				panel.add(btnVerMisRecetas, gbc_btnVerMisRecetas);
+			}
 			GridBagConstraints gbc_btnGuardarRecetas = new GridBagConstraints();
 			gbc_btnGuardarRecetas.fill = GridBagConstraints.BOTH;
 			gbc_btnGuardarRecetas.gridx = 1;
-			gbc_btnGuardarRecetas.gridy = 6;
+			gbc_btnGuardarRecetas.gridy = 7;
 			panel.add(btnGuardarRecetas, gbc_btnGuardarRecetas);
 		}
 	}
@@ -241,9 +257,10 @@ public class VentanaMenuUsuario extends JFrame {
 			}
 
 			try{
-			
+				
 				if(comensales!=0){
 					
+					txtDesayuno.setText(gest.generarReceta(1,comensales).toString());
 				}
 			}catch(Exception arg0){
 				
@@ -266,6 +283,7 @@ public class VentanaMenuUsuario extends JFrame {
 				
 				if(comensales!=0){
 					
+					txtAlmuerzo.setText(gest.generarReceta(2,comensales).toString());
 				}
 			}catch(Exception arg0){
 				
@@ -288,7 +306,7 @@ public class VentanaMenuUsuario extends JFrame {
 			try{
 				
 				if(comensales!=0){
-					
+					txtComida.setText(gest.generarReceta(3,comensales).toString());
 				}
 			}catch(Exception arg0){
 				
@@ -311,7 +329,7 @@ public class VentanaMenuUsuario extends JFrame {
 			try{
 				
 				if(comensales!=0){
-					
+					txtMerienda.setText(gest.generarReceta(4,comensales).toString());
 				}
 			}catch(Exception arg0){
 				
@@ -334,7 +352,7 @@ public class VentanaMenuUsuario extends JFrame {
 			try{
 				
 				if(comensales!=0){
-					
+					txtCena.setText(gest.generarReceta(5,comensales).toString());
 				}
 			}catch(Exception arg0){
 				
@@ -356,7 +374,11 @@ public class VentanaMenuUsuario extends JFrame {
 			try{
 				
 				if(comensales!=0){
-					
+					txtDesayuno.setText(gest.generarReceta(1, comensales).toString());
+					txtAlmuerzo.setText(gest.generarReceta(2, comensales).toString());
+					txtComida.setText(gest.generarReceta(3, comensales).toString());
+					txtMerienda.setText(gest.generarReceta(4, comensales).toString());
+					txtCena.setText(gest.generarReceta(5, comensales).toString());
 				}
 			}catch(Exception arg0){
 				
@@ -367,8 +389,25 @@ public class VentanaMenuUsuario extends JFrame {
 
 	private class BtnGuardarRecetasActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-
+			ArrayList recetasGuardar=new ArrayList();
+			
+				switch(VARIABLECONTROLADOR){
+				
+				case 0: 
+					
+				case 1:
+					
+				case 2:
+				
+				case 3:
+					
+				case 4:
+					
+				case 5:
+				
+				case 6:
+			}
 		}
 	}
 
-}
+}//Fin de la clase
