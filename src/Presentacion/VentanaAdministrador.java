@@ -149,12 +149,15 @@ public class VentanaAdministrador extends JFrame {
 
 			try {
 				
+				
 				int eleccion = JOptionPane.showOptionDialog(frameAdministrador,
 						"¿Seguro que quieres eliminar la receta?", "Eliminar receta", JOptionPane.YES_NO_OPTION,
 						JOptionPane.QUESTION_MESSAGE, null, null, null);
 				if (eleccion == 0) {
-					System.out.println("yeah");
-					
+					DefaultListModel modeloLista = (DefaultListModel) listaRecetas.getModel();
+					int indice = listaRecetas.getSelectedIndex(); 
+					modeloLista.remove(indice); 
+					listaRecetas.setModel(modeloLista);
 				}
 			} catch (Exception e) {
 
