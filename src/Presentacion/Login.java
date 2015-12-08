@@ -14,7 +14,6 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
-import Dominio.Cliente;
 import Dominio.GestorCliente;
 import javax.swing.ImageIcon;
 import java.awt.Font;
@@ -24,6 +23,10 @@ import java.awt.event.FocusEvent;
 
 public class Login extends JFrame {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private VentanaRegistro registro= new VentanaRegistro();
 	private static Login frame;
 	private JPanel contentPane;

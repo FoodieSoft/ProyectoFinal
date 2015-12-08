@@ -1,14 +1,11 @@
 package Presentacion;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
-import java.awt.Frame;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import java.awt.GridBagLayout;
+import Dominio.GestorCliente;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
@@ -24,6 +21,10 @@ import javax.swing.SwingConstants;
 
 public class VentanaRegistro extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private static VentanaRegistro registro;
 	private JPanel contentPane;
 	private JLabel lblIntroduzcaSuCorreo;
@@ -149,18 +150,20 @@ public class VentanaRegistro extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 			
 			try{
+				GestorCliente gestCli=new GestorCliente();
 			//Comprobamos que los campos no esten vacios
-			if(txtCorreo.getText().isEmpty() || pwd2.getText().isEmpty() || puedeRegistrar==false){
+			if(txtCorreo.getText().isEmpty() || txtCorreo.getText().indexOf("@")==-1 || pwd2.getText().isEmpty() || puedeRegistrar==false){
 				lblAvisos.setText("Introduzca un correo y contraseñas validas");
 				lblAvisos.setBackground(Color.RED);
 			}else{
-				
-				//Registramos al usuario
+				gestCli.registro(txtCorreo.getText(), pwd2.getText());
 				
 				lblAvisos.setText("Correcto");
 				lblAvisos.setBackground(Color.GREEN);
 			}
 			}catch(Exception arg0){
+				lblAvisos.setText("El usuario ya existe");
+				lblAvisos.setBackground(Color.RED);
 				System.out.println(arg0.getMessage());
 			}
 		}

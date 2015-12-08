@@ -3,12 +3,12 @@ package Dominio;
 public class Receta {
 	private String nombre;
 	private int tipo;
-	private int cantidad1;
-	private int cantidad2;
-	private int cantidad3;
-	private int cantidad4;
-	private int cantidad5;
-	private int cantidad6;
+	private double cantidad1;
+	private double cantidad2;
+	private double cantidad3;
+	private double cantidad4;
+	private double cantidad5;
+	private double cantidad6;
 	private String ingrediente1;
 	private String ingrediente2;
 	private String ingrediente3;
@@ -18,8 +18,8 @@ public class Receta {
 	private String descripcion;
 	
 	
-	public Receta(String nombre, int tipo, int cantidad1, int cantidad2, int cantidad3, int cantidad4, int cantidad5,
-			int cantidad6, String ingrediente1, String ingrediente2, String ingrediente3, String ingrediente4,
+	public Receta(String nombre,int tipo, double cantidad1, double cantidad2, double cantidad3, double cantidad4, double cantidad5,
+			double cantidad6, String ingrediente1, String ingrediente2, String ingrediente3, String ingrediente4,
 			String ingrediente5, String ingrediente6,String descripcion) {
 		
 		this.nombre = nombre;
@@ -71,46 +71,46 @@ public class Receta {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public int getTipo() {
+	public double getTipo() {
 		return tipo;
 	}
 	public void setTipo(int tipo) {
 		this.tipo = tipo;
 	}
-	public int getCantidad1() {
+	public double getCantidad1() {
 		return cantidad1;
 	}
-	public void setCantidad1(int cantidad1) {
+	public void setCantidad1(double cantidad1) {
 		this.cantidad1 = cantidad1;
 	}
-	public int getCantidad2() {
+	public double getCantidad2() {
 		return cantidad2;
 	}
-	public void setCantidad2(int cantidad2) {
+	public void setCantidad2(double cantidad2) {
 		this.cantidad2 = cantidad2;
 	}
-	public int getCantidad3() {
+	public double getCantidad3() {
 		return cantidad3;
 	}
-	public void setCantidad3(int cantidad3) {
+	public void setCantidad3(double cantidad3) {
 		this.cantidad3 = cantidad3;
 	}
-	public int getCantidad4() {
+	public double getCantidad4() {
 		return cantidad4;
 	}
-	public void setCantidad4(int cantidad4) {
+	public void setCantidad4(double cantidad4) {
 		this.cantidad4 = cantidad4;
 	}
-	public int getCantidad5() {
+	public double getCantidad5() {
 		return cantidad5;
 	}
-	public void setCantidad5(int cantidad5) {
+	public void setCantidad5(double cantidad5) {
 		this.cantidad5 = cantidad5;
 	}
-	public int getCantidad6() {
+	public double getCantidad6() {
 		return cantidad6;
 	}
-	public void setCantidad6(int cantidad6) {
+	public void setCantidad6(double cantidad6) {
 		this.cantidad6 = cantidad6;
 	}
 	public String getIngrediente1() {
@@ -151,11 +151,8 @@ public class Receta {
 	}
 	@Override
 	public String toString() {
-		return "Receta [nombre=" + nombre + ", cantidad1=" + cantidad1 + ", cantidad2=" + cantidad2 + ", cantidad3="
-				+ cantidad3 + ", cantidad4=" + cantidad4 + ", cantidad5=" + cantidad5 + ", cantidad6=" + cantidad6
-				+ ", ingrediente1=" + ingrediente1 + ", ingrediente2=" + ingrediente2 + ", ingrediente3=" + ingrediente3
-				+ ", ingrediente4=" + ingrediente4 + ", ingrediente5=" + ingrediente5 + ", ingrediente6=" + ingrediente6
-				+ ", descripcion=" + descripcion + "]";
+		return "RECETA: " + nombre + ". \n\nINGREDIENTES--" + cantidad1 + " "+ingrediente1+", "+cantidad2+" "+ingrediente2+", "+cantidad3+", "+ingrediente3+",\n"+cantidad4+" "+ingrediente4+", "+cantidad5+" " +ingrediente5+", "+cantidad6+ 
+				" "+ingrediente6+ "\nREALIZACION-- "+descripcion;
 	}
 	
 }
