@@ -2,35 +2,31 @@ package Presentacion;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.sql.SQLException;
 
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
 
 import Dominio.GestorReceta;
 import Dominio.Receta;
-
-import javax.swing.JLabel;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
-import javax.swing.JFormattedTextField;
-import javax.swing.JTextField;
-import javax.swing.JComboBox;
-import javax.swing.JTextArea;
-import javax.swing.SwingConstants;
-import javax.swing.JScrollPane;
-import javax.sound.midi.Synthesizer;
-import javax.swing.DefaultListModel;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.sql.SQLException;
-import java.util.Vector;
-import javax.swing.DefaultComboBoxModel;
 
 public class VentanaReceta extends JFrame {
 
@@ -98,7 +94,7 @@ public class VentanaReceta extends JFrame {
 	public VentanaReceta() {
 		addWindowListener(new ThisWindowListener());
 		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaReceta.class.getResource("/Presentacion/logo.png")));
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 746, 710);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -428,6 +424,7 @@ public class VentanaReceta extends JFrame {
 	}
 
 	private class BtnAceptarActionListener implements ActionListener {
+		@Override
 		public void actionPerformed(ActionEvent arg0) {
 
 			GestorReceta gestorReceta = new GestorReceta();
@@ -460,8 +457,9 @@ public class VentanaReceta extends JFrame {
 						} else {
 							System.out.println("mal");
 						}
-					}else{
-						System.out.println("Ponga una receta con nombre, al menos un ingrediente y con una descripcion");
+					} else {
+						System.out
+								.println("Ponga una receta con nombre, al menos un ingrediente y con una descripcion");
 					}
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -496,8 +494,9 @@ public class VentanaReceta extends JFrame {
 						} else {
 							System.out.println("mal");
 						}
-					}else{
-						System.out.println("Ponga una receta con nombre, al menos un ingrediente y con una descripcion");
+					} else {
+						System.out
+								.println("Ponga una receta con nombre, al menos un ingrediente y con una descripcion");
 					}
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -528,7 +527,7 @@ public class VentanaReceta extends JFrame {
 		GestorReceta gestorReceta = new GestorReceta();
 		Receta receta = gestorReceta.leerReceta(nombreReceta);
 		txtNombre.setText(receta.getNombre());
-		cbTipoComida.setSelectedIndex((int) receta.getTipo()-1);
+		cbTipoComida.setSelectedIndex(receta.getTipo() - 1);
 		txtCantidadIng1.setText(String.valueOf(receta.getCantidad1()));
 		txtCantidadIng2.setText(String.valueOf(receta.getCantidad2()));
 		txtCantidadIng3.setText(String.valueOf(receta.getCantidad3()));

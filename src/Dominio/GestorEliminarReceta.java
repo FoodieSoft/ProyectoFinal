@@ -1,14 +1,13 @@
 package Dominio;
 
 import java.sql.SQLException;
-import java.util.Vector;
 
 import Persistencia.RecetaDAO;
 //Hay que realizarlo
 
 public class GestorEliminarReceta {
 	public boolean eliminarReceta(String nombreReceta) throws SQLException, Exception {
-		boolean eliminado=false;
+		boolean eliminado = false;
 		RecetaDAO recetaDAO = new RecetaDAO();
 		eliminado = recetaDAO.delete(nombreReceta);
 		return eliminado;

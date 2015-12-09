@@ -40,6 +40,42 @@ public class RecetaDAO {
 		return recetas;
 	}
 
+	public boolean guardarReceta(String receta, String nombre) throws SQLException, Exception {
+		int i = 0;
+		boolean añadido = false;
+		String sentencia = "INSERT INTO foodiesoft.usuarioreceta (correo,nombreReceta) VALUES ('" + nombre + "','"
+				+ receta + "')";
+		i = Agente.getAgente().update(sentencia);
+		if (i != 0) {
+			añadido = true;
+		}
+		return añadido;
+	}
+
+	public Vector<String> readRecetaUsuario(String usuario) throws SQLException, Exception {
+		String sentencia = "SELECT * FROM foodiesoft.usuarioreceta WHERE correo='" + usuario + "'";
+
+		Vector<String> nombreReceta = Agente.getAgente().leerRecetasUsuario(sentencia);
+		return nombreReceta;
+	}
+
+	public Receta leerReceta(String nombreReceta) throws SQLException, Exception {
+		String sentencia = "SELECT * FROM foodiesoft.receta WHERE nombre='" + nombreReceta + "';";
+		Receta receta = Agente.getAgente().leerReceta(sentencia);
+		return receta;
+	}
+
+	public boolean EliminarRecetaUsuario(String email, String nombre) throws SQLException, Exception {
+		boolean eliminado = false;
+		String sentencia = "DELETE FROM foodiesoft.usuarioreceta WHERE correo='" + email + "' AND nombreReceta='"
+				+ nombre + "'";
+		int i = Agente.getAgente().update(sentencia);
+		if (i != 0) {
+			eliminado = true;
+		}
+		return eliminado;
+	}
+
 	public boolean delete(String nombreReceta) throws SQLException, Exception {
 		boolean eliminado = false;
 		int i;
@@ -51,41 +87,42 @@ public class RecetaDAO {
 		return eliminado;
 	}
 
-	public Receta leerReceta(String nombreReceta) throws Exception {
-		Receta receta = null;
-		String sentencia = "SELECT * FROM foodiesoft.receta WHERE nombre='" + nombreReceta + "';";
-		receta = Agente.getAgente().leerReceta(sentencia);
-		return receta;
-	}
-
 	public boolean insertarReceta(Receta receta2) throws Exception {
 		boolean insertado = false;
 		int i;
 		String sentencia = "INSERT INTO foodiesoft.receta(nombre,tipo,cantidadpri,cantidadsec,cantidadthi,cantidadfou,cantidadfiv,cantidadsit,ingredientepri,ingredientesec,ingredientethi,ingredientefou,ingredientefiv,ingredientesit,descripcion)VALUES('"
-				+receta2.getNombre()+"',"+receta2.getTipo()+","+receta2.getCantidad1()+","+receta2.getCantidad2()+","+receta2.getCantidad3()+","+receta2.getCantidad4()+","+receta2.getCantidad5()+","+receta2.getCantidad6()+",'"+receta2.getIngrediente1()
-				+"','"+receta2.getIngrediente2()+"','"+receta2.getIngrediente3()+"','"+receta2.getIngrediente4()+"','"+receta2.getIngrediente5()+"','"+receta2.getIngrediente6()+"','"+receta2.getDescripcion()+"');";
+				+ receta2.getNombre() + "'," + receta2.getTipo() + "," + receta2.getCantidad1() + ","
+				+ receta2.getCantidad2() + "," + receta2.getCantidad3() + "," + receta2.getCantidad4() + ","
+				+ receta2.getCantidad5() + "," + receta2.getCantidad6() + ",'" + receta2.getIngrediente1() + "','"
+				+ receta2.getIngrediente2() + "','" + receta2.getIngrediente3() + "','" + receta2.getIngrediente4()
+				+ "','" + receta2.getIngrediente5() + "','" + receta2.getIngrediente6() + "','"
+				+ receta2.getDescripcion() + "');";
 		i = Agente.getAgente().update(sentencia);
-		
+
 		if (i != 0) {
 			insertado = true;
 		}
 		return insertado;
 	}
-	
+
 	public boolean modificarReceta(Receta receta2) throws Exception {
 		boolean modificado = false;
 		int i;
-		String sentencia = "UPDATE foodiesoft.receta SET cantidadpri="+receta2.getCantidad1()+", cantidadsec="+receta2.getCantidad2()+", cantidadthi="+receta2.getCantidad3()+", cantidadfou="+receta2.getCantidad4()+", cantidadfiv="+receta2.getCantidad5()+", cantidadsit="+receta2.getCantidad6()
-		+", ingredientepri='"+receta2.getIngrediente1()+"', ingredientesec='"+receta2.getIngrediente2()+"', ingredientethi='"+receta2.getIngrediente3()+"', ingredientefou='"+receta2.getIngrediente4()+"', ingredientefiv='"+receta2.getIngrediente5()+"', ingredientesit='"+receta2.getIngrediente6()+"', descripcion='"
-		+receta2.getDescripcion()+"' WHERE nombre='"+receta2.getNombre()+"' AND tipo="+receta2.getTipo()+";";
+		String sentencia = "UPDATE foodiesoft.receta SET cantidadpri=" + receta2.getCantidad1() + ", cantidadsec="
+				+ receta2.getCantidad2() + ", cantidadthi=" + receta2.getCantidad3() + ", cantidadfou="
+				+ receta2.getCantidad4() + ", cantidadfiv=" + receta2.getCantidad5() + ", cantidadsit="
+				+ receta2.getCantidad6() + ", ingredientepri='" + receta2.getIngrediente1() + "', ingredientesec='"
+				+ receta2.getIngrediente2() + "', ingredientethi='" + receta2.getIngrediente3() + "', ingredientefou='"
+				+ receta2.getIngrediente4() + "', ingredientefiv='" + receta2.getIngrediente5() + "', ingredientesit='"
+				+ receta2.getIngrediente6() + "', descripcion='" + receta2.getDescripcion() + "' WHERE nombre='"
+				+ receta2.getNombre() + "' AND tipo=" + receta2.getTipo() + ";";
 		System.out.println(sentencia);
 		i = Agente.getAgente().update(sentencia);
-		
+
 		if (i != 0) {
 			modificado = true;
 		}
 		return modificado;
 	}
-	
 
 }

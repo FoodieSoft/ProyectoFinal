@@ -20,6 +20,7 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
 
 import Dominio.GestorReceta;
@@ -36,7 +37,7 @@ public class VentanaAdministrador extends JFrame {
 	private JScrollPane scrollPane;
 	private static JList listaRecetas;
 	private VentanaReceta ventanaReceta;
-	private GestorReceta gestorReceta=new GestorReceta();
+	private GestorReceta gestorReceta = new GestorReceta();
 
 	/**
 	 * Launch the application.
@@ -59,7 +60,7 @@ public class VentanaAdministrador extends JFrame {
 	 * Create the frame.
 	 */
 	public VentanaAdministrador() {
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		addWindowListener(new ThisWindowListener());
 		setIconImage(
 				Toolkit.getDefaultToolkit().getImage(VentanaAdministrador.class.getResource("/Presentacion/logo.png")));
@@ -132,36 +133,34 @@ public class VentanaAdministrador extends JFrame {
 	private class BtnAadirRecetaActionListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			ventanaReceta=new VentanaReceta();
+			ventanaReceta = new VentanaReceta();
 			ventanaReceta.setVisible(true);
-			ventanaReceta.aniadirReceta=true;
-			ventanaReceta.nombreReceta=null;
+			ventanaReceta.aniadirReceta = true;
+			VentanaReceta.nombreReceta = null;
 		}
 	}
 
 	private class BtnModificarRecetaActionListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			
-			
-			
+
 			try {
 				// Seleccionamos el la receta a modificar
 				int indiceRecetaModificar = listaRecetas.getSelectedIndex();
 				DefaultListModel modeloLista = (DefaultListModel) listaRecetas.getModel();
-				
+
 				// Lo eliminamos de la lista
-				String recetaModificar=modeloLista.getElementAt(indiceRecetaModificar).toString();
-						
-				ventanaReceta=new VentanaReceta();
+				String recetaModificar = modeloLista.getElementAt(indiceRecetaModificar).toString();
+
+				ventanaReceta = new VentanaReceta();
 				ventanaReceta.setVisible(true);
-				ventanaReceta.aniadirReceta=false;
-				ventanaReceta.nombreReceta=recetaModificar;
-			
+				ventanaReceta.aniadirReceta = false;
+				VentanaReceta.nombreReceta = recetaModificar;
+
 			} catch (Exception e) {
 
 			}
-			
+
 		}
 	}
 
@@ -169,34 +168,29 @@ public class VentanaAdministrador extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 
-			
 			try {
 				// Seleccionamos el nodo a eliminar
-						int indiceRecetaEliminar = listaRecetas.getSelectedIndex();
-						DefaultListModel modeloLista = (DefaultListModel) listaRecetas.getModel();
-				
-				
-				
-				
-					try {
-						
-						// Lo eliminamos de la lista
-						String recetaEliminar=modeloLista.getElementAt(indiceRecetaEliminar).toString();
-						int eleccion = JOptionPane.showOptionDialog(frameAdministrador,
-								"¿Seguro que quieres eliminar la receta?", "Eliminar receta", JOptionPane.YES_NO_OPTION,
-								JOptionPane.QUESTION_MESSAGE, null, null, null);
-						if(eleccion==0){
-						if(gestorReceta.eliminarReceta(recetaEliminar)==true){
+				int indiceRecetaEliminar = listaRecetas.getSelectedIndex();
+				DefaultListModel modeloLista = (DefaultListModel) listaRecetas.getModel();
+
+				try {
+
+					// Lo eliminamos de la lista
+					String recetaEliminar = modeloLista.getElementAt(indiceRecetaEliminar).toString();
+					int eleccion = JOptionPane.showOptionDialog(frameAdministrador,
+							"¿Seguro que quieres eliminar la receta?", "Eliminar receta", JOptionPane.YES_NO_OPTION,
+							JOptionPane.QUESTION_MESSAGE, null, null, null);
+					if (eleccion == 0) {
+						if (gestorReceta.eliminarReceta(recetaEliminar) == true) {
 							System.out.println("eliminado");
-						}else{
+						} else {
 						}
-						}
-						
-						actualizarRecetasLista();
-					} catch (Exception e) {
 					}
-					
-				
+
+					actualizarRecetasLista();
+				} catch (Exception e) {
+				}
+
 			} catch (Exception e) {
 
 			}

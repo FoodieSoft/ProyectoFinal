@@ -1,27 +1,28 @@
 package Presentacion;
 
 import java.awt.BorderLayout;
+import java.awt.ComponentOrientation;
+import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
 
 import Dominio.GestorReceta;
-
-import java.awt.Toolkit;
-import java.awt.GridBagLayout;
-import javax.swing.JTextArea;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
-import javax.swing.JOptionPane;
-import javax.swing.JButton;
-import javax.swing.JScrollPane;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.awt.event.ActionEvent;
-import java.awt.Dimension;
-import java.awt.ComponentOrientation;
+import Dominio.Receta;
 
 public class VentanaMenuUsuario extends JFrame {
 
@@ -50,20 +51,23 @@ public class VentanaMenuUsuario extends JFrame {
 	private JTextArea txtCena;
 	private JButton btnGenerarMenu;
 	protected Object frame;
-	private GestorReceta gest=new GestorReceta();
-	private int VARIABLECONTROLADOR=0;
+	private GestorReceta gest = new GestorReceta();
 	private JButton btnVerMisRecetas;
-	
+	public String emailUsuario;
+	private Receta[] ArrayReceta = new Receta[6];
+
 	/**
 	 * Launch the application.
 	 */
-	
+
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				try {
 					frameMenuUsuario = new VentanaMenuUsuario();
 					frameMenuUsuario.setVisible(true);
+					frameMenuUsuario.setLocationRelativeTo(null);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -78,7 +82,7 @@ public class VentanaMenuUsuario extends JFrame {
 		setMinimumSize(new Dimension(500, 500));
 		setIconImage(
 				Toolkit.getDefaultToolkit().getImage(VentanaMenuUsuario.class.getResource("/Presentacion/logo.png")));
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 800, 800);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -230,6 +234,7 @@ public class VentanaMenuUsuario extends JFrame {
 			}
 			{
 				btnVerMisRecetas = new JButton("Ver mis recetas");
+				btnVerMisRecetas.addActionListener(new BtnVerMisRecetasActionListener());
 				GridBagConstraints gbc_btnVerMisRecetas = new GridBagConstraints();
 				gbc_btnVerMisRecetas.fill = GridBagConstraints.BOTH;
 				gbc_btnVerMisRecetas.insets = new Insets(0, 0, 5, 0);
@@ -246,6 +251,7 @@ public class VentanaMenuUsuario extends JFrame {
 	}
 
 	private class BtnGenerarDesayunoActionListener implements ActionListener {
+		@Override
 		public void actionPerformed(ActionEvent e) {
 			Object[] numComensales = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 			int comensales = 0;
@@ -256,19 +262,21 @@ public class VentanaMenuUsuario extends JFrame {
 			} catch (Exception arg) {
 			}
 
-			try{
-				
-				if(comensales!=0){
-					
-					txtDesayuno.setText(gest.generarReceta(1,comensales).toString());
+			try {
+
+				if (comensales != 0) {
+
+					txtDesayuno.setText(gest.generarReceta(1, comensales).toString());
+					ArrayReceta[1] = gest.generarReceta(1, comensales);
 				}
-			}catch(Exception arg0){
-				
+			} catch (Exception arg0) {
+
 			}
 		}
 	}
 
 	private class BtnGenerarAlmuerzoActionListener implements ActionListener {
+		@Override
 		public void actionPerformed(ActionEvent e) {
 			Object[] numComensales = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 			int comensales = 0;
@@ -278,21 +286,23 @@ public class VentanaMenuUsuario extends JFrame {
 						JOptionPane.INFORMATION_MESSAGE, null, numComensales, null);
 			} catch (Exception arg) {
 			}
-			
-			try{
-				
-				if(comensales!=0){
-					
-					txtAlmuerzo.setText(gest.generarReceta(2,comensales).toString());
+
+			try {
+
+				if (comensales != 0) {
+
+					txtAlmuerzo.setText(gest.generarReceta(2, comensales).toString());
+					ArrayReceta[2] = gest.generarReceta(2, comensales);
 				}
-			}catch(Exception arg0){
-				
+			} catch (Exception arg0) {
+
 			}
 
 		}
 	}
 
 	private class BtnGenerarComidaActionListener implements ActionListener {
+		@Override
 		public void actionPerformed(ActionEvent e) {
 			Object[] numComensales = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 			int comensales = 0;
@@ -302,20 +312,22 @@ public class VentanaMenuUsuario extends JFrame {
 						JOptionPane.INFORMATION_MESSAGE, null, numComensales, null);
 			} catch (Exception arg) {
 			}
-			
-			try{
-				
-				if(comensales!=0){
-					txtComida.setText(gest.generarReceta(3,comensales).toString());
+
+			try {
+
+				if (comensales != 0) {
+					txtComida.setText(gest.generarReceta(3, comensales).toString());
+					ArrayReceta[3] = gest.generarReceta(3, comensales);
 				}
-			}catch(Exception arg0){
-				
+			} catch (Exception arg0) {
+
 			}
 
 		}
 	}
 
 	private class BtnGenerarMeriendaActionListener implements ActionListener {
+		@Override
 		public void actionPerformed(ActionEvent e) {
 			Object[] numComensales = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 			int comensales = 0;
@@ -325,20 +337,22 @@ public class VentanaMenuUsuario extends JFrame {
 						JOptionPane.INFORMATION_MESSAGE, null, numComensales, null);
 			} catch (Exception arg) {
 			}
-			
-			try{
-				
-				if(comensales!=0){
-					txtMerienda.setText(gest.generarReceta(4,comensales).toString());
+
+			try {
+
+				if (comensales != 0) {
+					txtMerienda.setText(gest.generarReceta(4, comensales).toString());
+					ArrayReceta[4] = gest.generarReceta(4, comensales);
 				}
-			}catch(Exception arg0){
-				
+			} catch (Exception arg0) {
+
 			}
 
 		}
 	}
 
 	private class BtnGenerarCenaActionListener implements ActionListener {
+		@Override
 		public void actionPerformed(ActionEvent e) {
 			Object[] numComensales = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 			int comensales = 0;
@@ -348,20 +362,22 @@ public class VentanaMenuUsuario extends JFrame {
 						JOptionPane.INFORMATION_MESSAGE, null, numComensales, null);
 			} catch (Exception arg) {
 			}
-			
-			try{
-				
-				if(comensales!=0){
-					txtCena.setText(gest.generarReceta(5,comensales).toString());
+
+			try {
+
+				if (comensales != 0) {
+					txtCena.setText(gest.generarReceta(5, comensales).toString());
+					ArrayReceta[5] = gest.generarReceta(5, comensales);
 				}
-			}catch(Exception arg0){
-				
+			} catch (Exception arg0) {
+
 			}
 
 		}
 	}
 
 	private class BtnGenerarMenuActionListener implements ActionListener {
+		@Override
 		public void actionPerformed(ActionEvent e) {
 			Object[] numComensales = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 			int comensales = 0;
@@ -371,43 +387,54 @@ public class VentanaMenuUsuario extends JFrame {
 						JOptionPane.INFORMATION_MESSAGE, null, numComensales, null);
 			} catch (Exception arg) {
 			}
-			try{
-				
-				if(comensales!=0){
+			try {
+
+				if (comensales != 0) {
 					txtDesayuno.setText(gest.generarReceta(1, comensales).toString());
+					ArrayReceta[1] = gest.generarReceta(1, comensales);
 					txtAlmuerzo.setText(gest.generarReceta(2, comensales).toString());
+					ArrayReceta[2] = gest.generarReceta(2, comensales);
 					txtComida.setText(gest.generarReceta(3, comensales).toString());
+					ArrayReceta[3] = gest.generarReceta(3, comensales);
 					txtMerienda.setText(gest.generarReceta(4, comensales).toString());
+					ArrayReceta[4] = gest.generarReceta(4, comensales);
 					txtCena.setText(gest.generarReceta(5, comensales).toString());
+					ArrayReceta[5] = gest.generarReceta(5, comensales);
 				}
-			}catch(Exception arg0){
-				
+			} catch (Exception arg0) {
+
 			}
 
 		}
 	}
 
 	private class BtnGuardarRecetasActionListener implements ActionListener {
+		@Override
 		public void actionPerformed(ActionEvent e) {
-			ArrayList recetasGuardar=new ArrayList();
-			
-				switch(VARIABLECONTROLADOR){
-				
-				case 0: 
-					
-				case 1:
-					
-				case 2:
-				
-				case 3:
-					
-				case 4:
-					
-				case 5:
-				
-				case 6:
+			GestorReceta gest = new GestorReceta();
+			boolean añadido = false;
+			for (int i = 1; i < ArrayReceta.length; i++) {
+				try {
+					añadido = gest.GuardarReceta(ArrayReceta[i].getNombre(), emailUsuario);
+				} catch (SQLException e1) {
+					JOptionPane.showMessageDialog(frameMenuUsuario,
+							"Usted ya tiene guardada la receta de: " + ArrayReceta[i].getNombre());
+				} catch (Exception e2) {
+					System.out.println(e2.getMessage());
+				}
+
 			}
 		}
 	}
 
-}//Fin de la clase
+	private class BtnVerMisRecetasActionListener implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			VentanaRecetasUsuario VenRec = new VentanaRecetasUsuario();
+			VenRec.setVisible(true);
+			VenRec.setLocationRelativeTo(null);
+			// frameMenuUsuario.dispose();
+		}
+	}
+
+}// Fin de la clase
