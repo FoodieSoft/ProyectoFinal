@@ -137,18 +137,16 @@ public class Login extends JFrame {
 						} catch (Exception e) {
 
 							if (JOptionPane.showOptionDialog(null,
-									"Constraseña o usuario incorrecta.¿Está usted seguro de que es usuario?¿Desea registrarse?",
-									"Mensaje", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null,
-									new Object[] { " SI ", " CONTINUAR " }, "NO") == 0) {
-								JOptionPane.showMessageDialog(null, "Será enviado al menu de Registro");
+									"Constraseña o usuario incorrectas. ¿Desea registrarse?", "Mensaje",
+									JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null,
+									new Object[] { " SI ", " NO " }, "NO") == 0) {
 								VentanaRegistro reg = new VentanaRegistro();
 								reg.setVisible(true);
 								reg.setLocationRelativeTo(null);
 
-								frame.dispose();
 							} else {
-								JOptionPane.showMessageDialog(null, "La respuesta fue - CONTINUAR");
-								lblInfo.setText("Usuario o contraseña incorrectA");
+
+								lblInfo.setText("Usuario o contraseña incorrecta");
 								lblInfo.setBackground(Color.RED);
 							}
 						}

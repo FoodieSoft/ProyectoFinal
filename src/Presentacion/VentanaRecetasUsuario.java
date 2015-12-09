@@ -21,6 +21,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
+import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
@@ -65,7 +66,7 @@ public class VentanaRecetasUsuario extends JFrame {
 		setIconImage(Toolkit.getDefaultToolkit()
 				.getImage(VentanaRecetasUsuario.class.getResource("/Presentacion/logo.png")));
 		setResizable(false);
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 464, 456);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -156,7 +157,7 @@ public class VentanaRecetasUsuario extends JFrame {
 				if (eleccion == 0) {
 					if (gestorReceta.eliminarRecetaUsuario(emailUsuario2,
 							recetas.remove(indiceRecetaEliminar).getNombre()) == true) {
-						JOptionPane.showMessageDialog(frame, "Eliminado");
+						JOptionPane.showMessageDialog(frame, "Receta eliminada");
 
 					} else {
 						JOptionPane.showMessageDialog(frame, "No se ha podido eliminar");

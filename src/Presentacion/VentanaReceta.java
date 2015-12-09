@@ -17,6 +17,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -64,6 +65,7 @@ public class VentanaReceta extends JFrame {
 	private static JTextField txtIng5;
 	private static JTextField txtIng6;
 	private static JTextArea txtDescripcion;
+	private static VentanaReceta frameVentanaReceta;
 
 	// Variable que nos permitira saber si va a modificar la receta o aniadirla
 	public boolean aniadirReceta = true;
@@ -79,8 +81,8 @@ public class VentanaReceta extends JFrame {
 			@Override
 			public void run() {
 				try {
-					VentanaReceta frame = new VentanaReceta();
-					frame.setVisible(true);
+					frameVentanaReceta = new VentanaReceta();
+					frameVentanaReceta.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -449,21 +451,23 @@ public class VentanaReceta extends JFrame {
 							: Double.parseDouble(txtCantidadIng6.getText());
 					if (!txtNombre.getText().isEmpty() && !txtIng1.getText().isEmpty()
 							&& !txtDescripcion.getText().isEmpty()) {
-						receta = new Receta(txtNombre.getText(), cbTipoComida.getSelectedIndex(), ing1, ing2, ing3,
+						receta = new Receta(txtNombre.getText(), cbTipoComida.getSelectedIndex() + 1, ing1, ing2, ing3,
 								ing4, ing5, ing6, txtIng1.getText(), txtIng2.getText(), txtIng3.getText(),
 								txtIng4.getText(), txtIng5.getText(), txtIng6.getText(), txtDescripcion.getText());
 						boolean insertado = gestorReceta.insertarReceta(receta);
 						if (insertado == true) {
-							System.out.println("bien");
+							JOptionPane.showMessageDialog(frameVentanaReceta, "Receta añadida");
 						} else {
-							System.out.println("mal");
+							JOptionPane.showMessageDialog(frameVentanaReceta, "Receta no añadida");
 						}
 					} else {
-						System.out
-								.println("Ponga una receta con nombre, al menos un ingrediente y con una descripcion");
+						JOptionPane.showMessageDialog(frameVentanaReceta,
+								"Ponga una receta con nombre, al menos un ingrediente y con una descripcion");
+
 					}
 				} catch (Exception e) {
-					e.printStackTrace();
+					JOptionPane.showMessageDialog(frameVentanaReceta, "Error: " + e.getMessage());
+
 				}
 				// Si queremos modificar la receta
 
@@ -486,21 +490,22 @@ public class VentanaReceta extends JFrame {
 							: Double.parseDouble(txtCantidadIng6.getText());
 					if (!txtNombre.getText().isEmpty() && !txtIng1.getText().isEmpty()
 							&& !txtDescripcion.getText().isEmpty()) {
-						receta = new Receta(txtNombre.getText(), cbTipoComida.getSelectedIndex(), ing1, ing2, ing3,
+						receta = new Receta(txtNombre.getText(), cbTipoComida.getSelectedIndex() + 1, ing1, ing2, ing3,
 								ing4, ing5, ing6, txtIng1.getText(), txtIng2.getText(), txtIng3.getText(),
 								txtIng4.getText(), txtIng5.getText(), txtIng6.getText(), txtDescripcion.getText());
 						boolean insertado = gestorReceta.modificarReceta(receta);
 						if (insertado == true) {
-							System.out.println("bien");
+							JOptionPane.showMessageDialog(frameVentanaReceta, "Receta modificada");
 						} else {
-							System.out.println("mal");
+							JOptionPane.showMessageDialog(frameVentanaReceta, "Receta no modificada");
 						}
 					} else {
-						System.out
-								.println("Ponga una receta con nombre, al menos un ingrediente y con una descripcion");
+						JOptionPane.showMessageDialog(frameVentanaReceta,
+								"Ponga una receta con nombre, al menos un ingrediente y con una descripcion");
+
 					}
 				} catch (Exception e) {
-					e.printStackTrace();
+					JOptionPane.showMessageDialog(frameVentanaReceta, "Error: " + e.getMessage());
 				}
 
 			}

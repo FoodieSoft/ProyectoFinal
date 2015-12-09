@@ -182,8 +182,9 @@ public class VentanaAdministrador extends JFrame {
 							JOptionPane.QUESTION_MESSAGE, null, null, null);
 					if (eleccion == 0) {
 						if (gestorReceta.eliminarReceta(recetaEliminar) == true) {
-							System.out.println("eliminado");
+							JOptionPane.showMessageDialog(frameAdministrador, "Receta eliminada");
 						} else {
+							JOptionPane.showMessageDialog(frameAdministrador, "Receta no eliminada");
 						}
 					}
 

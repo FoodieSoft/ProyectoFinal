@@ -417,14 +417,18 @@ public class VentanaMenuUsuario extends JFrame {
 			for (int i = 1; i < ArrayReceta.length; i++) {
 				try {
 					añadido = gest.GuardarReceta(ArrayReceta[i].getNombre(), emailUsuario);
+					JOptionPane.showMessageDialog(frameMenuUsuario, "Receta añadida: " + ArrayReceta[i].getNombre());
+
 				} catch (SQLException e1) {
 					JOptionPane.showMessageDialog(frameMenuUsuario,
 							"Usted ya tiene guardada la receta de: " + ArrayReceta[i].getNombre());
 				} catch (Exception e2) {
-					System.out.println(e2.getMessage());
+					// JOptionPane.showMessageDialog(frameMenuUsuario,"No hay
+					// receta que añadir");
 				}
 
 			}
+
 		}
 	}
 

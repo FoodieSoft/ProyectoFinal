@@ -116,7 +116,6 @@ public class RecetaDAO {
 				+ receta2.getIngrediente4() + "', ingredientefiv='" + receta2.getIngrediente5() + "', ingredientesit='"
 				+ receta2.getIngrediente6() + "', descripcion='" + receta2.getDescripcion() + "' WHERE nombre='"
 				+ receta2.getNombre() + "' AND tipo=" + receta2.getTipo() + ";";
-		System.out.println(sentencia);
 		i = Agente.getAgente().update(sentencia);
 
 		if (i != 0) {

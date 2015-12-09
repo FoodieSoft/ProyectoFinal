@@ -163,7 +163,7 @@ public class VentanaRegistro extends JFrame {
 				} else {
 					gestCli.registro(txtCorreo.getText(), pwd2.getText());
 
-					lblAvisos.setText("Correcto");
+					lblAvisos.setText("Usuario añadido");
 					lblAvisos.setBackground(Color.GREEN);
 				}
 			} catch (Exception arg0) {
