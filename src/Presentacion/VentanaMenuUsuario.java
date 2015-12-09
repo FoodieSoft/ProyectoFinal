@@ -79,6 +79,7 @@ public class VentanaMenuUsuario extends JFrame {
 	 * Create the frame.
 	 */
 	public VentanaMenuUsuario() {
+		setTitle("Generar recetas");
 		setMinimumSize(new Dimension(500, 500));
 		setIconImage(
 				Toolkit.getDefaultToolkit().getImage(VentanaMenuUsuario.class.getResource("/Presentacion/logo.png")));

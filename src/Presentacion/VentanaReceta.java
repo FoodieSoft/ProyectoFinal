@@ -92,6 +92,7 @@ public class VentanaReceta extends JFrame {
 	 * Create the frame.
 	 */
 	public VentanaReceta() {
+		setTitle("Recetas");
 		addWindowListener(new ThisWindowListener());
 		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaReceta.class.getResource("/Presentacion/logo.png")));
 		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
